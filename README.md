@@ -34,16 +34,26 @@ npm install react-keys-shortcuts
 ``` ts
 import { useListenEvent } from 'react-keys-shortcuts';
 
+// 'use user formula here for exaple used "ctrl+shift+x"
+
 const MyComponent = () => {
+  const activeIdRef = useRef<string>('');
   const clickFunction = (id: string) => {
     console.log('Clicked item', id);
   };
 
-  // Listen for "ctrl+k" and trigger clickFunction
-  useListenEvent('ctrl+k', () => clickFunction('item-123'));
+//   Listen for "ctrl+keys" and trigger clickFunction   
+  useListenEvent('ctrl+shift+x', () => {
+    clickFunction(activeIdRef.current);
+  });
 
   return (
-    <button onClick={() => clickFunction('item-123')}>Click Me</button>
+    <button onClick={() => {
+        activeIdRef.current = 'id-123'; // assign value to ref
+        clickFunction(activeIdRef.current); // call with updated value
+    }}>
+        Click Me or click ctrl+shift+x
+    </button>
   );
 };
 
