@@ -60,7 +60,7 @@ const MyComponent = () => {
 
 ```
 
-### 2 useListenEvent
+### 2 useListenEffect
 #### Globally listen to keyboard shortcuts and trigger actions.
 
 ```ts
